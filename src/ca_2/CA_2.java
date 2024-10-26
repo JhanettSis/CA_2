@@ -67,7 +67,7 @@ public class CA_2 {
          */
         SORT_BY_NAME("Sort by Name", 1), 
         SORT_BY_MANAGEMENT("Sort by Management Staff", 2), 
-        SORT_BY_DEPARTMENT("Sort by Department", 3);
+        SORT_BY_DEPARTMENT("Sort by Department", 3); 
 
         private final int option; // Variable for option number
         private final String description; // Variable for description
@@ -187,6 +187,7 @@ public class CA_2 {
         }
     }
     public static boolean exit = false; // A flag to control the exit of the program
+    public static boolean isValid = false;
     /**
      * The main method serves as the entry point for the program execution.
      * It initializes the Scanner for user input and displays the main menu
@@ -202,6 +203,7 @@ public class CA_2 {
         while (!exit) { 
             // Displaying the main menu
             System.out.println("\n--- Hospital Main Menu ---"); 
+            isValid = true;
             mainMenu(scanner); // Call to mainMenu method to display options
         }
         scanner.close(); // Closing the Scanner to prevent resource leaks
@@ -215,8 +217,7 @@ public class CA_2 {
      */
     private static void mainMenu(Scanner scanner) { 
         int index = 0; // Variable to iterate through menu options
-        boolean isvalid = false;
-
+        
         // Displaying the main menu options
         while (index < MainMenuOption.values().length) { 
             MainMenuOption option = MainMenuOption.values()[index]; // Getting current option
@@ -256,14 +257,15 @@ public class CA_2 {
                     
                     if (confirmExit.equalsIgnoreCase("y")) { // If user confirms exit
                         exit = true; // Exit the program
-                        isvalid = true;
                     }
+                    isValid = true;
                     break;
                 default: // If user inputs an invalid option
                     System.out.println("Choose a valid option."); // Message indicating invalid choice
+                    isValid = false;
                     break;
             }
-        } while (!isvalid); // Loop continues until a valid option is chosen
+        } while (!isValid); // Loop continues until a valid option is chosen
     }
 
     /**
@@ -272,14 +274,15 @@ public class CA_2 {
      * @param scanner Scanner object for user input.
      */
     private static void sortMenu(Scanner scanner) { 
-        boolean backToMain = false; // Flag to control returning to the main menu
-
+        
         do {
             System.out.println("\n--- Sort Options ---"); // Displaying sort options header
             int index = 0; // Variable to iterate through sort options
             while (index < SortOption.values().length) { 
-                SortOption option = SortOption.values()[index]; // Getting current sort option
-                System.out.println(option.getOption() + ") " + option.getDescription()); // Printing sort option number and description
+                // Getting current sort option
+                SortOption option = SortOption.values()[index]; 
+                // Printing sort option number and description
+                System.out.println(option.getOption() + ") " + option.getDescription()); 
                 index++; // Moving to the next option
             }
 
@@ -300,14 +303,12 @@ public class CA_2 {
                     System.out.println("Sorting by Department..."); // Message indicating the choice
                     // Code to sort by department here
                     break;
-                case "4": // If user chooses to return to the main menu
-                    backToMain = true; // Set the flag to true to break out of the loop
-                    break;
                 default: // If user inputs an invalid option
                     System.out.println("Choose a valid option."); // Message indicating invalid choice
+                    isValid = false;
                     break;
             }
-        } while (!backToMain); // Loop continues until user chooses to return to main menu
+        } while (!isValid); // Loop continues until isValid is = true
     }
 
     /**
@@ -316,8 +317,7 @@ public class CA_2 {
      * @param scanner Scanner object for user input.
      */
     private static void sortByNameMenu(Scanner scanner) { 
-        boolean backToSort = false; // Flag to control returning to the sort menu
-
+        
         do {
             System.out.println("\n--- Sort By Name Options ---"); // Displaying sort by name options header
             int index = 0; // Variable to iterate through sort by name options
@@ -343,14 +343,12 @@ public class CA_2 {
                     mainMenu(scanner); // Call to mainMenu method to display options
                     // Code to sort names in descending order here
                     break;
-                case "3": // If user chooses to return to the sort menu
-                    backToSort = true; // Set the flag to true to break out of the loop
-                    break;
                 default: // If user inputs an invalid option
                     System.out.println("Choose a valid option."); // Message indicating invalid choice
+                    isValid = false;
                     break;
             }
-        } while (!backToSort); // Loop continues until user chooses to return to sort menu
+        } while (!isValid); // Loop continues until isValid is = true
     }
 
     /**
@@ -359,8 +357,7 @@ public class CA_2 {
      * @param scanner Scanner object for user input.
      */
     private static void searchMenu(Scanner scanner) { 
-        boolean backToMain = false; // Flag to control returning to the main menu
-
+        
         do {
             System.out.println("\n--- Search Options ---"); // Displaying search options header
             int index = 0; // Variable to iterate through search options
@@ -391,14 +388,12 @@ public class CA_2 {
                     mainMenu(scanner); // Call to mainMenu method to display options
                     // Code to search by department here
                     break;
-                case "4": // If user chooses to return to the main menu
-                    backToMain = true; // Set the flag to true to break out of the loop
-                    break;
                 default: // If user inputs an invalid option
                     System.out.println("Choose a valid option."); // Message indicating invalid choice
+                    isValid = false;
                     break;
             }
             
-        } while (!backToMain); // Loop continues until user chooses to return to main menu
+        } while (!isValid); // Loop continues until the variable is true
     }
 }
