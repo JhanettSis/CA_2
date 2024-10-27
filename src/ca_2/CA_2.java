@@ -4,6 +4,7 @@
  */
 package ca_2;
 
+import java.util.ArrayList;
 import java.util.Scanner; // Importing the Scanner class for user input
 
 /**
@@ -186,8 +187,15 @@ public class CA_2 {
             return description; 
         }
     }
-    public static boolean exit = false; // A flag to control the exit of the program
     public static boolean isValid = false;
+    public static boolean endProgram = false;
+    
+    private static boolean confirmExit(Scanner scanner) {
+        System.out.println("    \n❖ Are you sure you want to exit? (Press 'y' to exit!)");
+        System.out.println("    ❖ Otherwise press any key!");
+        return scanner.nextLine().equalsIgnoreCase("y");
+    }
+    
     /**
      * The main method serves as the entry point for the program execution.
      * It initializes the Scanner for user input and displays the main menu
@@ -198,13 +206,44 @@ public class CA_2 {
     public static void main(String[] args) { 
         Scanner scanner = new Scanner(System.in); // Creating a Scanner object for user input
         
-
+        // This string will have the name of the file entered by the user.
+        String fileName = "";
+        
         // Loop that continues until the user decides to exit
-        while (!exit) { 
+        while (!endProgram) { 
             // Displaying the main menu
-            System.out.println("\n--- Hospital Main Menu ---"); 
-            isValid = true;
-            mainMenu(scanner); // Call to mainMenu method to display options
+            System.out.println("☸☸==================☸☸  Hospital Main Menu  ☸☸==================☸☸");
+            // Shows a menu header to the user.
+            // Asks the user to input the name of the file to read.
+            System.out.println("  ❖ Please enter the full path to read the file");
+            System.out.println("     (e.g., C:/Users/username/Downloads/Applicants_Form.txt). ");
+            System.out.println("     Make sure to include the drive letter and all folders leading to the file.");
+            
+            System.out.print("  ❖ Please insert the name of the file to read: ");
+            // Reads the file name from the user's input.
+            fileName = scanner.nextLine();
+            // Calls a method to read the file and return the data in an ArrayList.
+            ArrayList<Object> data = FillUpArrays.setFile(fileName);
+            
+            // This checks if the data is not empty.
+            if (!data.isEmpty()) {
+                ArrayList<String> UserNames = (ArrayList<String>) data.get(0); // To store user names
+                ArrayList<String> ManagementTeam = (ArrayList<String>) data.get(1); // To store management team IDs
+                ArrayList<String> Departments = (ArrayList<String>) data.get(2); // To store department IDs
+                
+                // Displays the list of books and their corresponding page numbers.
+                FillUpArrays.displayArrayList(UserNames, ManagementTeam, Departments);
+
+                // Calls the main menu method to let the user choose sorting or searching options.
+                mainMenu(scanner); // Call to mainMenu method to display options
+            }
+            System.out.println("endProgram" + endProgram);
+            
+           if (confirmExit(scanner)) {
+                    endProgram = true; // Exit the program if confirmed
+                    
+                }
+                                    
         }
         scanner.close(); // Closing the Scanner to prevent resource leaks
         System.out.println("Thank you for using the Hospital system. Goodbye!"); // Goodbye message
@@ -250,15 +289,12 @@ public class CA_2 {
                     System.out.println("You chose to change the file .txt."); // Message indicating the choice
                     // Code to change the file here
                     break;
-                case "6": // If user chooses 'Exit'
-                    // Asking for confirmation to exit
-                    System.out.print("Are you sure you want to exit? (y/n): "); 
-                    String confirmExit = scanner.nextLine().trim(); // Reading user's confirmation (first character)
-                    
-                    if (confirmExit.equalsIgnoreCase("y")) { // If user confirms exit
-                        exit = true; // Exit the program
+                case "6": 
+                    if (confirmExit(scanner)) { 
+                        scanner.close(); // Closing the Scanner to prevent resource leaks
+                        System.out.println("Thank you for using the Hospital system. Goodbye!"); // Goodbye message
+                        System.exit(0);
                     }
-                    isValid = true;
                     break;
                 default: // If user inputs an invalid option
                     System.out.println("Choose a valid option."); // Message indicating invalid choice
