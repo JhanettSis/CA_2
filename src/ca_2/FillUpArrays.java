@@ -16,19 +16,20 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 // This imports the ArrayList class, used to store lists of items.
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class FillUpArrays {
 
+    
+    
     // This method reads a file and fills three ArrayLists with user names, management team, and department.
-    public static ArrayList<Object> setFile(String fileName) {
+    public static void setFile(String fileName, Scanner scanner) {
         // Initializing ArrayLists to store user names, management team, and department
-        ArrayList<String> UserNames = new ArrayList<>(); // To store user names
-        ArrayList<String> ManagementTeam = new ArrayList<>(); // To store management team
-        ArrayList<String> Departments = new ArrayList<>(); // To store department
+        //UserNames stores user names, ManagementTeam store management team, Departments store department
+        ArrayList<String> UserNames = new ArrayList<>();
+        ArrayList<String> ManagementTeam= new ArrayList<>();
+        ArrayList<String> Departments = new ArrayList<>();
         
-        // Result ArrayList to hold the three lists
-        ArrayList<Object> result = new ArrayList<>(); 
-
         // 'Try' statement to automatically close the BufferedReader
         try (BufferedReader bufferedReader = new BufferedReader(new FileReader(new File(fileName)))) {
             // Variable to store each line read from the file.
@@ -41,24 +42,21 @@ public class FillUpArrays {
 
                 // Check if It has enough parts in the array (expecting at least 3 for this example)
                 if (parts.length >= 3) {
-                    String userName = parts[0].trim(); // First part is the username
+                    String userNameItem = parts[0].trim(); // First part is the username
                     String managementMember = parts[1].trim(); // Second part is a member of management
-                    String department = parts[2].trim(); // Third part is the department
+                    String departmentItem = parts[2].trim(); // Third part is the department
 
                     // Add the values to their respective ArrayLists
-                    UserNames.add(userName); // Add username to UserNames list
+                    UserNames.add(userNameItem); // Add username to UserNames list
                     ManagementTeam.add(managementMember); // Add management to ManagementTeam list
-                    Departments.add(department); // Add department to Departments list
+                    Departments.add(departmentItem); // Add department to Departments list
                 } else {
                     // If not enough parts are found, print a message and skip the line.
                     //System.out.println("Skipping invalid line (not enough parts): " + line);
                 }
             }
 
-            // Add the list of users, management, and departments to the result ArrayList.
-            result.add(UserNames); // Add UserNames list to result
-            result.add(ManagementTeam); // Add ManagementTeam list to result
-            result.add(Departments); // Add Departments list to result
+            CA_2.mainMenu(UserNames, ManagementTeam, Departments, scanner, fileName); // Call to mainMenu method to display options
             
         } catch (FileNotFoundException e) {
             // If the file is not found, print an error message with the details.
@@ -67,9 +65,6 @@ public class FillUpArrays {
             // Handle IO exceptions during file reading.
             System.out.println("Error reading the file: " + e.getMessage());
         }
-        
-        // Return the result, which contains user names, management team, and department.
-        return result;
     }
 
     // This method displays the first 20 user names and their associated.
@@ -93,5 +88,10 @@ public class FillUpArrays {
         if (userNames.size() > 20) {
             System.out.println("    ✾ -------> There are more ... ");
         }
+    }
+    
+    public static void updateDataList(ArrayList<String> UserNames, ArrayList<String> ManagementTeam, ArrayList<String> Departments){
+    
+        
     }
 }

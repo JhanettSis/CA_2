@@ -144,48 +144,6 @@ public class CA_2 {
         }
     }
 
-    // Enumeration for search options
-    enum SearchOption { 
-        /**
-         * Defines the available search options, including searching by name,
-         * management staff, and department.
-         */
-        SEARCH_BY_NAME("Search by Name", 1), 
-        SEARCH_BY_MANAGEMENT("Search by Management Staff", 2), 
-        SEARCH_BY_DEPARTMENT("Search by Department", 3); 
-
-        private final int option; // Variable for option number
-        private final String description; // Variable for description
-
-        /**
-         * Constructor for SearchOption enum.
-         *
-         * @param description A string representing the search option description.
-         * @param option An integer representing the option number.
-         */
-        SearchOption(String description, int option) { 
-            this.description = description; 
-            this.option = option; 
-        }
-
-        /** 
-         * Returns the option number associated with the search option.
-         * 
-         * @return The option number.
-         */
-        public int getOption() { 
-            return option; 
-        }
-
-        /** 
-         * Returns the description of the search option.
-         * 
-         * @return The option description.
-         */
-        public String getDescription() { 
-            return description; 
-        }
-    }
     public static boolean isValid = false;
     public static boolean endProgram = false;
     
@@ -194,6 +152,9 @@ public class CA_2 {
         System.out.println("    ❖ Otherwise press any key!");
         return scanner.nextLine().equalsIgnoreCase("y");
     }
+    
+    public static ArrayList<String> UserNames, ManagementTeam, Departments = new ArrayList<>();
+            
     
     /**
      * The main method serves as the entry point for the program execution.
@@ -222,21 +183,7 @@ public class CA_2 {
             // Reads the file name from the user's input.
             fileName = scanner.nextLine();
             // Calls a method to read the file and return the data in an ArrayList.
-            ArrayList<Object> data = FillUpArrays.setFile(fileName);
-            
-            // This checks if the data is not empty.
-            if (!data.isEmpty()) {
-                ArrayList<String> UserNames = (ArrayList<String>) data.get(0); // To store user names
-                ArrayList<String> ManagementTeam = (ArrayList<String>) data.get(1); // To store management team IDs
-                ArrayList<String> Departments = (ArrayList<String>) data.get(2); // To store department IDs
-                
-                // Displays the list of books and their corresponding page numbers.
-                FillUpArrays.displayArrayList(UserNames, ManagementTeam, Departments);
-
-                // Calls the main menu method to let the user choose sorting or searching options.
-                mainMenu(scanner, fileName); // Call to mainMenu method to display options
-            }
-            System.out.println("endProgram" + endProgram);
+            FillUpArrays.setFile(fileName, scanner);
             
            if (confirmExit(scanner)) {
                     endProgram = true; // Exit the program if confirmed
@@ -253,7 +200,7 @@ public class CA_2 {
      *
      * @param scanner Scanner object for user input.
      */
-    private static void mainMenu(Scanner scanner, String fileName) { 
+    public static void mainMenu(ArrayList<String> UserNames, ArrayList<String> ManagementTeam,ArrayList<String> Departments, Scanner scanner, String fileName) { 
         int index = 0; // Variable to iterate through menu options
         
         // Displaying the main menu options
@@ -271,10 +218,12 @@ public class CA_2 {
             // Switch statement to handle user choices
             switch (mainChoice) { 
                 case "1": // If user chooses 'Sort'
+                    System.out.println("Holis sort"+UserNames);
                     sortMenu(scanner, fileName); // Call to sortMenu method
+                    
                     break;
                 case "2": // If user chooses 'Search'
-                    searchMenu(scanner, fileName); // Call to searchMenu method
+                    SearchOnTheList.searchMenu(UserNames, ManagementTeam, Departments, scanner, fileName); // Call to searchMenu method
                     break;
                 case "3": // If user chooses 'Insert a new user'
                     System.out.println("You have chosen to insert a new user."); // Message indicating the choice
@@ -282,7 +231,7 @@ public class CA_2 {
                     break;
                 case "4": // If user chooses 'Generate random people'
                     CreateRandomData.generateRandomEmployeeData(fileName); // Calls method to generate and save employee data
-                    
+                    FillUpArrays.setFile(fileName, scanner);
                     break;
                 case "5": 
                     if (confirmExit(scanner)) { 
@@ -377,12 +326,12 @@ public class CA_2 {
             switch (nameSortChoice) { 
                 case "1": // If user chooses ascending sort
                     System.out.println("Sorting names in ascending order..."); // Message indicating the choice
-                    mainMenu(scanner, fileName); // Call to mainMenu method to display options
+                    mainMenu(UserNames, ManagementTeam, Departments, scanner, fileName); // Call to mainMenu method to display options
                     // Code to sort names in ascending order here
                     break;
                 case "2": // If user chooses descending sort
                     System.out.println("Sorting names in descending order..."); // Message indicating the choice
-                    mainMenu(scanner, fileName); // Call to mainMenu method to display options
+                    mainMenu(UserNames, ManagementTeam, Departments, scanner, fileName); // Call to mainMenu method to display options
                     // Code to sort names in descending order here
                     break;
                 default: // If user inputs an invalid option
@@ -393,62 +342,4 @@ public class CA_2 {
         } while (!isValid); // Loop continues until isValid is = true
     }
 
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    /**
-     * Displays searching options and handles user choices for searching.
-     *
-     * @param scanner Scanner object for user input.
-     */
-    private static void searchMenu(Scanner scanner, String fileName) { 
-        
-        do {
-            System.out.println("\n--- Search Options ---"); // Displaying search options header
-            int index = 0; // Variable to iterate through search options
-            while (index < SearchOption.values().length) { 
-                SearchOption option = SearchOption.values()[index]; // Getting current search option
-                System.out.println(option.getOption() + ") " + option.getDescription()); // Printing option number and description
-                index++; // Moving to the next option
-            }
-
-            String searchChoice; // Variable to store user's choice
-            System.out.print("Please select a search option: "); // Prompting for input
-            searchChoice = scanner.nextLine(); // Reading user input
-
-            // Switch statement to handle searching choices
-            switch (searchChoice) { 
-                case "1": // If user chooses to search by name
-                    System.out.println("Searching by Name..."); // Message indicating the choice
-                    mainMenu(scanner, fileName); // Call to mainMenu method to display options
-                    // Code to search by name here
-                    break;
-                case "2": // If user chooses to search by management staff
-                    System.out.println("Searching by Management Staff..."); // Message indicating the choice
-                    mainMenu(scanner, fileName); // Call to mainMenu method to display options                    
-                    // Code to search by management staff here
-                    break;
-                case "3": // If user chooses to search by department
-                    System.out.println("Searching by Department..."); // Message indicating the choice
-                    mainMenu(scanner, fileName); // Call to mainMenu method to display options
-                    // Code to search by department here
-                    break;
-                default: // If user inputs an invalid option
-                    System.out.println("Choose a valid option."); // Message indicating invalid choice
-                    isValid = false;
-                    break;
-            }
-            
-        } while (!isValid); // Loop continues until the variable is true
-    }
 }
