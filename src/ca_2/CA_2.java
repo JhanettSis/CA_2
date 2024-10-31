@@ -134,14 +134,13 @@ public class CA_2 {
             switch (mainChoice) { 
                 case "1": // If user chooses 'Sort'
                     SortListAscDesc.sortMenu(UserNames, ManagementTeam, Departments, scanner, fileName); // Call to sortMenu method
-                    
                     break;
                 case "2": // If user chooses 'Search'
                     SearchOnTheList.searchMenu(UserNames, ManagementTeam, Departments, scanner, fileName); // Call to searchMenu method
                     break;
                 case "3": // If user chooses 'Insert a new user'
-                    System.out.println("You have chosen to insert a new user."); // Message indicating the choice
-                    // Code to insert a new user here
+                    InsertUserStaff.InserStaff(scanner, fileName);
+                    FillUpArrays.setFile(fileName, scanner);
                     break;
                 case "4": // If user chooses 'Generate random people'
                     CreateRandomData.generateRandomEmployeeData(fileName); // Calls method to generate and save employee data

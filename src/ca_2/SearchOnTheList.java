@@ -37,7 +37,8 @@ public class SearchOnTheList {
                 continue; // Restart loop to prompt again
             }
 
-            // Sort the userNames, managementTeam, and departments lists in parallel
+            // Sort the userNames, managementTeam, and departments lists in parallel 
+            // and the boolean 'True' because is ascending order
             SortListAscDesc.quickSort(userNames, managementTeam, departments, true);
 
             // Perform binary search on the sorted userNames list

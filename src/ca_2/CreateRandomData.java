@@ -35,17 +35,18 @@ public class CreateRandomData {
 
     // Enum defining types of management roles
     public enum ManagerRoleType {
-        ChiefExecutiveOfficer,   // Represents the CEO
-        ChiefMedicalOfficer,     // Represents the CMO in charge of medical operations
-        Doctor,                  // Represents a doctor managing medical teams
-        NursingStaff             // Represents nursing staff involved in patient care
+        Manager_Administrator,
+        Assistant_Manager,
+        Physicians_General_Practitioners,
+        Nurse_Practitioners
     }
 
     // Enum defining different departments
     public enum DepartmentType {
-        EmergencyDepartment,     // Handles emergency medical situations
-        SurgeryDepartment,       // Focuses on surgical procedures
-        HumanResources           // Manages employee relations and resources
+        Administrative,
+        Medical_Team,
+        Laboratory_Diagnostic_Services,
+        Facilities_Maintenance
     }
 
     // Inner Employee class to represent each employee's details

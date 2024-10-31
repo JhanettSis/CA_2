@@ -108,8 +108,11 @@ public class SortListAscDesc {
     private static void displayTopNames(ArrayList<String> userNames, ArrayList<String> managementTeam,
                                  ArrayList<String> departments) {
         System.out.println("Top 20 sorted names:");
+        /** If userNames.size() is less than 20, the loop will stop at the end of userNames. 
+         *  If userNames.size() is 20 or more, the loop will only go up to 19 (the index 19), 
+         *  resulting in a maximum of 20 iterations.
+        */
         for (int i = 0; i < Math.min(20, userNames.size()); i++) {
-            
             System.out.println("        -> " + (i + 1) + ": " + userNames.get(i) +
                                    " | Management Staff: " + managementTeam.get(i) +
                                    " | Department: " + departments.get(i));
