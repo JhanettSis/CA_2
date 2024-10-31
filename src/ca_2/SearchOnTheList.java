@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package ca_2;
 
 import java.util.ArrayList;
@@ -42,7 +38,7 @@ public class SearchOnTheList {
             }
 
             // Sort the userNames, managementTeam, and departments lists in parallel
-            quickSort(userNames, managementTeam, departments);
+            SortListAscDesc.quickSort(userNames, managementTeam, departments, true);
 
             // Perform binary search on the sorted userNames list
             int index = binarySearch(userNames, searchChoice);
@@ -68,85 +64,6 @@ public class SearchOnTheList {
      */
     private static boolean isValidName(String name) {
         return name != null && name.matches("[a-zA-Z ]+"); // Check for letters and spaces only
-    }
-
-    /**
-     * Sorts the userNames, managementTeam, and departments lists in ascending order
-     * based on userNames using Quick Sort.
-     *
-     * @param userNames      List of user names to be sorted.
-     * @param managementTeam List of management team names to be reordered in parallel.
-     * @param departments    List of department names to be reordered in parallel.
-     */
-    private static void quickSort(ArrayList<String> userNames, ArrayList<String> managementTeam, ArrayList<String> departments) {
-        quickSortHelper(userNames, managementTeam, departments, 0, userNames.size() - 1);
-    }
-
-    /**
-     * Helper method to perform recursive Quick Sort on lists.
-     *
-     * @param userNames      List of user names to be sorted.
-     * @param managementTeam List of management team names to be reordered in parallel.
-     * @param departments    List of department names to be reordered in parallel.
-     * @param low            Starting index of the sort range.
-     * @param high           Ending index of the sort range.
-     */
-    private static void quickSortHelper(ArrayList<String> userNames, ArrayList<String> managementTeam, 
-                                        ArrayList<String> departments, int low, int high) {
-        if (low < high) { // Base case for recursion
-            int pivotIndex = partition(userNames, managementTeam, departments, low, high); // Get partition index
-            quickSortHelper(userNames, managementTeam, departments, low, pivotIndex - 1); // Recursively sort left
-            quickSortHelper(userNames, managementTeam, departments, pivotIndex + 1, high); // Recursively sort right
-        }
-    }
-
-    /**
-     * Partitions the list based on a pivot, arranging elements around the pivot for Quick Sort.
-     *
-     * @param userNames      List of user names.
-     * @param managementTeam List of management team names.
-     * @param departments    List of department names.
-     * @param low            Starting index.
-     * @param high           Ending index.
-     * @return The index position of the pivot element.
-     */
-    private static int partition(ArrayList<String> userNames, ArrayList<String> managementTeam, 
-                                 ArrayList<String> departments, int low, int high) {
-        String pivot = userNames.get(high); // Set pivot as the last element
-        int i = low - 1; // Initialize the smaller element index
-
-        for (int j = low; j < high; j++) { // Traverse list up to the pivot
-            if (userNames.get(j).compareTo(pivot) < 0) { // Compare with pivot
-                i++; // Increment index for smaller element
-                swap(userNames, managementTeam, departments, i, j); // Swap elements to partition
-            }
-        }
-        swap(userNames, managementTeam, departments, i + 1, high); // Place pivot in correct position
-        return i + 1; // Return pivot index
-    }
-
-    /**
-     * Swaps elements at specified indices in userNames, managementTeam, and departments lists.
-     *
-     * @param userNames      List of user names.
-     * @param managementTeam List of management team names.
-     * @param departments    List of department names.
-     * @param i              Index of the first element.
-     * @param j              Index of the second element.
-     */
-    private static void swap(ArrayList<String> userNames, ArrayList<String> managementTeam, 
-                             ArrayList<String> departments, int i, int j) {
-        String tempUserName = userNames.get(i); // Temporary variable for userNames swap
-        userNames.set(i, userNames.get(j)); // Swap userNames
-        userNames.set(j, tempUserName);
-
-        String tempManagement = managementTeam.get(i); // Temporary variable for managementTeam swap
-        managementTeam.set(i, managementTeam.get(j)); // Swap managementTeam
-        managementTeam.set(j, tempManagement);
-
-        String tempDepartment = departments.get(i); // Temporary variable for departments swap
-        departments.set(i, departments.get(j)); // Swap departments
-        departments.set(j, tempDepartment);
     }
 
     /**

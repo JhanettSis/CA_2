@@ -1,9 +1,8 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
- */
 package ca_2;
-
+/**
+ *
+ * @author jhane
+ */
 import java.util.ArrayList;
 import java.util.Scanner; // Importing the Scanner class for user input
 
@@ -59,91 +58,7 @@ public class CA_2 {
         }
     }
 
-    // Enumeration for sort options
-    enum SortOption { 
-        /**
-         * Defines the available sorting options, including sorting by name,
-         * management staff, and department.
-         */
-        SORT_BY_NAME("Sort by Name", 1), 
-        SORT_BY_MANAGEMENT("Sort by Management Staff", 2), 
-        SORT_BY_DEPARTMENT("Sort by Department", 3); 
-
-        private final int option; // Variable for option number
-        private final String description; // Variable for description
-
-        /**
-         * Constructor for SortOption enum.
-         *
-         * @param description A string representing the sort option description.
-         * @param option An integer representing the option number.
-         */
-        SortOption(String description, int option) { 
-            this.description = description; 
-            this.option = option; 
-        }
-
-        /** 
-         * Returns the option number associated with the sort option.
-         * 
-         * @return The option number.
-         */
-        public int getOption() { 
-            return option; 
-        }
-
-        /** 
-         * Returns the description of the sort option.
-         * 
-         * @return The option description.
-         */
-        public String getDescription() { 
-            return description; 
-        }
-    }
-
-    // Enumeration for sort by name details
-    enum SortByName { 
-        /**
-         * Defines the sorting options available for sorting names,
-         * including ascending and descending orders.
-         */
-        ASCENDING("Sort Name Ascending", 1), 
-        DESCENDING("Sort Name Descending", 2); 
-
-        private final int option; // Variable for option number
-        private final String description; // Variable for description
-
-        /**
-         * Constructor for SortByName enum.
-         *
-         * @param description A string representing the sort by name option description.
-         * @param option An integer representing the option number.
-         */
-        SortByName(String description, int option) { 
-            this.description = description; 
-            this.option = option; 
-        }
-
-        /** 
-         * Returns the option number associated with the sort by name option.
-         * 
-         * @return The option number.
-         */
-        public int getOption() { 
-            return option; 
-        }
-
-        /** 
-         * Returns the description of the sort by name option.
-         * 
-         * @return The option description.
-         */
-        public String getDescription() { 
-            return description; 
-        }
-    }
-
+    
     public static boolean isValid = false;
     public static boolean endProgram = false;
     
@@ -218,8 +133,7 @@ public class CA_2 {
             // Switch statement to handle user choices
             switch (mainChoice) { 
                 case "1": // If user chooses 'Sort'
-                    System.out.println("Holis sort"+UserNames);
-                    sortMenu(scanner, fileName); // Call to sortMenu method
+                    SortListAscDesc.sortMenu(UserNames, ManagementTeam, Departments, scanner, fileName); // Call to sortMenu method
                     
                     break;
                 case "2": // If user chooses 'Search'
@@ -247,99 +161,4 @@ public class CA_2 {
             }
         } while (!isValid); // Loop continues until a valid option is chosen
     }
-
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    /**
-     * Displays sorting options and handles user choices for sorting.
-     *
-     * @param scanner Scanner object for user input.
-     */
-    private static void sortMenu(Scanner scanner, String fileName) { 
-        
-        do {
-            System.out.println("\n--- Sort Options ---"); // Displaying sort options header
-            int index = 0; // Variable to iterate through sort options
-            while (index < SortOption.values().length) { 
-                // Getting current sort option
-                SortOption option = SortOption.values()[index]; 
-                // Printing sort option number and description
-                System.out.println(option.getOption() + ") " + option.getDescription()); 
-                index++; // Moving to the next option
-            }
-
-            String sortChoice; // Variable to store user's choice
-            System.out.print("Please select a sorting option: "); // Prompting for input
-            sortChoice = scanner.nextLine(); // Reading user input
-
-            // Switch statement to handle sorting choices
-            switch (sortChoice) { 
-                case "1": // If user chooses to sort by name
-                    sortByNameMenu(scanner, fileName); // Call to sortByNameMenu method
-                    break;
-                case "2": // If user chooses to sort by management staff
-                    System.out.println("Sorting by Management Staff..."); // Message indicating the choice
-                    // Code to sort by management staff here
-                    break;
-                case "3": // If user chooses to sort by department
-                    System.out.println("Sorting by Department..."); // Message indicating the choice
-                    // Code to sort by department here
-                    break;
-                default: // If user inputs an invalid option
-                    System.out.println("Choose a valid option."); // Message indicating invalid choice
-                    isValid = false;
-                    break;
-            }
-        } while (!isValid); // Loop continues until isValid is = true
-    }
-
-    /**
-     * Displays sorting options for names and handles user choices.
-     *
-     * @param scanner Scanner object for user input.
-     */
-    private static void sortByNameMenu(Scanner scanner, String fileName) { 
-        
-        do {
-            System.out.println("\n--- Sort By Name Options ---"); // Displaying sort by name options header
-            int index = 0; // Variable to iterate through sort by name options
-            while (index < SortByName.values().length) { 
-                SortByName option = SortByName.values()[index]; // Getting current sort by name option
-                System.out.println(option.getOption() + ") " + option.getDescription()); // Printing option number and description
-                index++; // Moving to the next option
-            }
-
-            String nameSortChoice; // Variable to store user's choice
-            System.out.print("Please select a sort by name option: "); // Prompting for input
-            nameSortChoice = scanner.nextLine(); // Reading user input
-
-            // Switch statement to handle sorting by name choices
-            switch (nameSortChoice) { 
-                case "1": // If user chooses ascending sort
-                    System.out.println("Sorting names in ascending order..."); // Message indicating the choice
-                    mainMenu(UserNames, ManagementTeam, Departments, scanner, fileName); // Call to mainMenu method to display options
-                    // Code to sort names in ascending order here
-                    break;
-                case "2": // If user chooses descending sort
-                    System.out.println("Sorting names in descending order..."); // Message indicating the choice
-                    mainMenu(UserNames, ManagementTeam, Departments, scanner, fileName); // Call to mainMenu method to display options
-                    // Code to sort names in descending order here
-                    break;
-                default: // If user inputs an invalid option
-                    System.out.println("Choose a valid option."); // Message indicating invalid choice
-                    isValid = false;
-                    break;
-            }
-        } while (!isValid); // Loop continues until isValid is = true
-    }
-
 }
