@@ -48,7 +48,7 @@ public class SearchOnTheList {
                 System.out.println("Management Team: " + managementTeam.get(index));
                 System.out.println("Department: " + departments.get(index));
             } else { // If the name was not found
-                System.out.println("Name not found.");
+                System.out.println("Name not found' message, prom.");
             }
 
             // Return to the main menu after the search

@@ -86,9 +86,4 @@ public class FillUpArrays {
             System.out.println("    ✾ -------> There are more ... ");
         }
     }
-    
-    public static void updateDataList(ArrayList<String> UserNames, ArrayList<String> ManagementTeam, ArrayList<String> Departments){
-    
-        
-    }
 }

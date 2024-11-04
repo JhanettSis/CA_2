@@ -101,7 +101,7 @@ public class CreateRandomData {
         }
 
         // Write employee details to a file
-        try (BufferedWriter fileWriter = new BufferedWriter(new FileWriter(fileName))) {
+        try (BufferedWriter fileWriter = new BufferedWriter(new FileWriter(fileName, true))) {
             for (Employee employee : employeeList) {
                 fileWriter.write(employee.toString()); // Write each employee's string representation to file
                 fileWriter.newLine();                  // Move to the next line after each employee
