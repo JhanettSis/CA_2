@@ -101,13 +101,11 @@ public class CA_2 {
             FillUpArrays.setFile(fileName, scanner);
             
            if (confirmExit(scanner)) {
-                    endProgram = true; // Exit the program if confirmed
-                    
-                }
-                                    
+            endProgram = true; // Exit the program if confirmed
+            }                        
         }
         scanner.close(); // Closing the Scanner to prevent resource leaks
-        System.out.println("Thank you for using the Hospital system. Goodbye!"); // Goodbye message
+        System.out.println("    ❋ Thank you for using the Hospital system. Goodbye!"); // Goodbye message
     }
 
     /**
@@ -118,16 +116,17 @@ public class CA_2 {
     public static void mainMenu(ArrayList<String> UserNames, ArrayList<String> ManagementTeam,ArrayList<String> Departments, Scanner scanner, String fileName) { 
         int index = 0; // Variable to iterate through menu options
         
-        // Displaying the main menu options
-        while (index < MainMenuOption.values().length) { 
-            MainMenuOption option = MainMenuOption.values()[index]; // Getting current option
-            System.out.println(option.getOption() + ") " + option.getDescription()); // Printing option number and description
-            index++; // Moving to the next option
-        }
+        
 
         String mainChoice; // Variable to store user's choice
         do {
-            System.out.print("Please select an option: "); // Prompting the user for input
+            System.out.println("\n  ❖ Please select an option: "); // Prompting the user for input
+                // Displaying the main menu options
+                while (index < MainMenuOption.values().length) { 
+                    MainMenuOption option = MainMenuOption.values()[index]; // Getting current option
+                    System.out.println("    👉 " + option.getOption() + ") " + option.getDescription()); // Printing option number and description
+                    index++; // Moving to the next option
+                }
             mainChoice = scanner.nextLine(); // Reading user input
 
             // Switch statement to handle user choices
@@ -149,12 +148,12 @@ public class CA_2 {
                 case "5": 
                     if (confirmExit(scanner)) { 
                         scanner.close(); // Closing the Scanner to prevent resource leaks
-                        System.out.println("Thank you for using the Hospital system. Goodbye!"); // Goodbye message
+                        System.out.println("    ❋ Thank you for using the Hospital system. Goodbye!"); // Goodbye message
                         System.exit(0);
                     }
                     break;
                 default: // If user inputs an invalid option
-                    System.out.println("Choose a valid option."); // Message indicating invalid choice
+                    System.out.println("  ❖ Choose a valid option."); // Message indicating invalid choice
                     isValid = false;
                     break;
             }

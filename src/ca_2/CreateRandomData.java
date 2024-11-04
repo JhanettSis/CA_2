@@ -97,7 +97,7 @@ public class CreateRandomData {
 
         // Print each employee’s details to the console
         for (Employee employee : employeeList) {
-            System.out.println(employee); // Calls the toString() method to print employee details
+            System.out.println("    ✓ " + employee); // Calls the toString() method to print employee details
         }
 
         // Write employee details to a file
@@ -107,7 +107,7 @@ public class CreateRandomData {
                 fileWriter.newLine();                  // Move to the next line after each employee
             }
         } catch (IOException error) { // Catches any errors during file writing
-            System.out.println("Error writing to file."); // Prints error message to the console
+            System.out.println("    ✘ Error writing to file."); // Prints error message to the console
             error.printStackTrace(); // Shows detailed error information
         }
     }

@@ -57,10 +57,10 @@ public class FillUpArrays {
             
         } catch (FileNotFoundException e) {
             // If the file is not found, print an error message with the details.
-            System.out.println("File not found: " + e.getMessage());
+            System.out.println("    ✘ File not found: " + e.getMessage());
         } catch (IOException e) {
             // Handle IO exceptions during file reading.
-            System.out.println("Error reading the file: " + e.getMessage());
+            System.out.println("    ✘ Error reading the file: " + e.getMessage());
         }
     }
 
@@ -70,19 +70,19 @@ public class FillUpArrays {
         System.out.println("    ✾ ✾ ✾ ✾ ✾ ✾ ✾ ✾ ✾ ✾ ✾ ✾ ✾ ✾ ✾ ✾ ✾ ✾ ✾ ✾ ✾ ✾ ✾ ");
         System.out.println("    ✾ Displaying up to 5 user names and their:");
 
-        // This loop runs for the first 20 users and shows their names and.
-        for (int i = 0; i < 3; i++) {
+        // This loop runs for the first 5 users and shows their names and.
+        for (int i = 0; i < 5; i++) {
             // Check if there are enough users to display.
             if (i < userNames.size() && i < managementTeam.size() && i < departments.size()) {
                 // Print the user name, management ID, and department ID
-                System.out.println("        -> " + (i + 1) + ": " + userNames.get(i) +
+                System.out.println("        ✓ " + (i + 1) + ": " + userNames.get(i) +
                                    " | Management Staff: " + managementTeam.get(i) +
                                    " | Department: " + departments.get(i));
             }
         }
 
         // Tells the user there are more users if they exist.
-        if (userNames.size() > 20) {
+        if (userNames.size() > 5) {
             System.out.println("    ✾ -------> There are more ... ");
         }
     }

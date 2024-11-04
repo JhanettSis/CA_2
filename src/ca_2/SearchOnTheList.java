@@ -28,12 +28,12 @@ public class SearchOnTheList {
         do {
             System.out.println("\n--- Search Options ---"); // Display search options header
 
-            System.out.print("Please insert a name to search: "); // Prompt for input
+            System.out.print("    👉 Please insert a name to search: "); // Prompt for input
             String searchChoice = scanner.nextLine(); // Read user input for search
 
             // Validate if the input is a valid name (no numbers or symbols)
             if (!isValidName(searchChoice)) {
-                System.out.println("Please insert a valid name."); // Print error for invalid input
+                System.out.println("    ➢ Please insert a valid name."); // Print error for invalid input
                 continue; // Restart loop to prompt again
             }
 
@@ -44,11 +44,13 @@ public class SearchOnTheList {
             // Perform binary search on the sorted userNames list
             int index = binarySearch(userNames, searchChoice);
             if (index != -1) { // If the name was found
-                System.out.println("Name found: " + userNames.get(index));
-                System.out.println("Management Team: " + managementTeam.get(index));
-                System.out.println("Department: " + departments.get(index));
-            } else { // If the name was not found
-                System.out.println("Name not found' message, prom.");
+                System.out.println("    ✺ ✺ ✺ ✺ ✺ ✺ ✺ ✺ ✺ ✺ ✺ ✺ ✺ ✺ ✺ ✺ ✺ ✺ ");
+                System.out.println("        ➽ Name Staff: " + userNames.get(index));
+                System.out.println("        ➽ Management Team: " + managementTeam.get(index));
+                System.out.println("        ➽ Department: " + departments.get(index));
+                System.out.println("    ✺ ✺ ✺ ✺ ✺ ✺ ✺ ✺ ✺ ✺ ✺ ✺ ✺ ✺ ✺ ✺ ✺ ✺ ");
+            } else { // If the name was not found display the message 'not found'
+                System.out.println("    ✘ Name not found");
             }
 
             // Return to the main menu after the search

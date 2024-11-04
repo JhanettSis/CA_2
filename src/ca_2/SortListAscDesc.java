@@ -69,30 +69,33 @@ public class SortListAscDesc {
             
             // Display ascending and descending sort options
             for (SortByName option : SortByName.values()) {
-                System.out.println(option.getOption() + ") " + option.getDescription());
+                System.out.println("    👉 " + option.getOption() + ") " + option.getDescription());
             }
 
             // Prompt for user's choice
-            System.out.print("Please select sorting order: ");
+            System.out.print("    ❖ Please select sorting order: ");
             String orderChoice = scanner.nextLine(); // Read user input
 
             // Perform the selected sorting order
             switch (orderChoice) {
                 case "1": // If user chooses ascending sort
-                    System.out.println("Sorting names in ascending order..."); // Message indicating the choice
+                    System.out.println("    ☞ Sorting names in ascending order..."); // Message indicating the choice
                     quickSort(userNames, managementTeam, departments, true); // Call quickSort method with ascending order
+                    // Display the top 20 sorted names (to be implemented as needed)
+                    displayTopNames(userNames, managementTeam, departments);
                     break;
                 case "2": // If user chooses descending sort
-                    System.out.println("Sorting names in descending order..."); // Message indicating the choice
+                    System.out.println("    ☞ Sorting names in descending order..."); // Message indicating the choice
                     quickSort(userNames, managementTeam, departments, false); // Call quickSort method with descending order
+                    // Display the top 20 sorted names (to be implemented as needed)
+                    displayTopNames(userNames, managementTeam, departments);
                     break;
                 default: // If user inputs an invalid option
-                    System.out.println("Choose a valid option."); // Message indicating invalid choice
+                    System.out.println("    Choose a valid option."); // Message indicating invalid choice
                     break;
             }
 
-            // Optionally display the top 20 sorted names (to be implemented as needed)
-            displayTopNames(userNames, managementTeam, departments);
+            
 
             // Return to the main menu after sorting
             CA_2.mainMenu(userNames, managementTeam, departments, scanner, fileName);
@@ -107,13 +110,13 @@ public class SortListAscDesc {
      */
     private static void displayTopNames(ArrayList<String> userNames, ArrayList<String> managementTeam,
                                  ArrayList<String> departments) {
-        System.out.println("Top 20 sorted names:");
+        System.out.println(" ▻ ▻ ▻ ▻ ▻ ▻ ▻ ▻ ▻ ▻ Top 20 sorted names ◅ ◅ ◅ ◅ ◅ ◅ ◅ ◅ ◅ ◅");
         /** If userNames.size() is less than 20, the loop will stop at the end of userNames. 
          *  If userNames.size() is 20 or more, the loop will only go up to 19 (the index 19), 
          *  resulting in a maximum of 20 iterations.
         */
         for (int i = 0; i < Math.min(20, userNames.size()); i++) {
-            System.out.println("        -> " + (i + 1) + ": " + userNames.get(i) +
+            System.out.println("        ✓ " + (i + 1) + ": " + userNames.get(i) +
                                    " | Management Staff: " + managementTeam.get(i) +
                                    " | Department: " + departments.get(i));
         }
