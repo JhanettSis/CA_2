@@ -93,6 +93,9 @@ public class CreateRandomData {
                 // Create and add a new Employee object with selected attributes
                 employeeList.add(new Employee(selectedName, selectedManagerRole, selectedDepartment));
             }
+            else {
+                System.out.println("There is a name: " + selectedName);
+            }
         }
 
         // Print each employee’s details to the console
