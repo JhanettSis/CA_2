@@ -9,9 +9,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import org.junit.After;
-import org.junit.AfterClass;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -23,21 +21,13 @@ public class CreateRandomDataTest {
     
     private static final String TEST_FILE_NAME = "Applicants_Form.txt";
     
-    @BeforeClass
-    public static void setUpClass() {
-        System.out.println("Setting up the test class...");
-    }
-    
-    @AfterClass
-    public static void tearDownClass() {
-        System.out.println("Tearing down the test class...");
-    }
-    
     @Before
     public void setUp() {
         // Ensure the test file does not exist before each test
         File file = new File(TEST_FILE_NAME);
         if (file.exists()) {
+            // ******* Not delete file : when the tester want to check the methor SearchOnTheList
+            // put in commends this line file.delete();
             file.delete();
         }
     }
@@ -47,6 +37,8 @@ public class CreateRandomDataTest {
         // Clean up the test file after each test
         File file = new File(TEST_FILE_NAME);
         if (file.exists()) {
+            // ******* Not delete file : when the tester want to check the methor SearchOnTheList
+            // put in commends this line file.delete();
             file.delete();
         }
     }
@@ -75,13 +67,13 @@ public class CreateRandomDataTest {
             // Check that the first line is not null and follows the expected format
             assertNotNull("The file should contain at least one line", line);
             
-            // Sample check for data format (Name, Team, Department)
+            // Sample check for data format (Name, ManagementType, Department)
             String[] dataParts = line.split(",");
             assertEquals("The line should contain exactly 3 parts", 3, dataParts.length);
 
             // Further checks to ensure data content isn't empty
             assertFalse("Name should not be empty", dataParts[0].trim().isEmpty());
-            assertFalse("Team should not be empty", dataParts[1].trim().isEmpty());
+            assertFalse("ManagementType should not be empty", dataParts[1].trim().isEmpty());
             assertFalse("Department should not be empty", dataParts[2].trim().isEmpty());
 
         } catch (IOException e) {

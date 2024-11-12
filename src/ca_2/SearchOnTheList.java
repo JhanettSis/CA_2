@@ -76,7 +76,7 @@ public class SearchOnTheList {
      * @param key       The name to search for.
      * @return The index of the found name, or -1 if not found.
      */
-    private static int binarySearch(ArrayList<String> userNames, String key) {
+    public static int binarySearch(ArrayList<String> userNames, String key) {
         int low = 0; // Initialize low index
         int high = userNames.size() - 1; // Initialize high index
 

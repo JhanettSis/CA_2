@@ -5,16 +5,19 @@ package ca_2;
  *
  * @author jhane
  */
-// This imports the File class, which allows us to open and work with files.
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-// This imports the ArrayList class, used to store lists of items.
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ * The FillUpArrays class is responsible for reading data from the file Applicants_Form.txt 
+ * and separate on three ArrayLists with user names, management roles, and department.
+ * It also provides methods to display the first few entries from the lists.
+ */
 public class FillUpArrays {
 
     

@@ -49,14 +49,15 @@ public class InsertUserStaffTest {
     @Test
     public void testInsertStaffValidInput() throws IOException {
         // Simulating valid input using System.setIn()
-        String simulatedInput = "Diego Doe\n2\n1\n"; // Name: "John Doe", ManagerRoleType: "Manager", DepartmentType: "HR"
+        // Name: "Diego Doe", ManagerRoleType: "Assistant_Manager", DepartmentType: "Administrative"
+        String simulatedInput = "Diego Doe\n2\n1\n"; 
         System.setIn(new ByteArrayInputStream(simulatedInput.getBytes()));
 
         // Call the InserStaff method
         Scanner scanner = new Scanner(System.in);
         String fileName = TEST_FILE;
         
-        // Assuming InserStaff method is available and correctly implemented in InsertUserStaff class
+        // InserStaff method is available and correctly implemented in InsertUserStaff class
         InsertUserStaff.InserStaff(scanner,  fileName);
 
         // Ensure the file was actually written
@@ -76,7 +77,7 @@ public class InsertUserStaffTest {
         System.out.println(expectedLine);
         assertEquals("The file content should contain the correct staff entry.", expectedLine, line);
         
-        // Expected result to match with the format "Name, Role, Department"
+        // Expected result to match with the format "Name, managementType, Department"
         assertEquals("The file content should match the expected staff entry.", expectedLine.trim(), line != null ? line.trim() : null);
     }
 }

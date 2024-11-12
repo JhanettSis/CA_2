@@ -4,7 +4,7 @@ package ca_2;
  * @author jhane
  */
 import java.util.ArrayList;
-import java.util.Scanner; // Importing the Scanner class for user input
+import java.util.Scanner;
 
 /**
  * The CA_2 class serves as the main entry point for the Hospital system application.
@@ -58,10 +58,13 @@ public class CA_2 {
         }
     }
 
-    
+    // Flags to control program flow
     public static boolean isValid = false;
     public static boolean endProgram = false;
-    
+    /** Confirms if the user wants to exit the program.
+     * @param scanner Scanner object for reading user input.
+     * @return true if the user confirms to exit
+    */
     private static boolean confirmExit(Scanner scanner) {
         System.out.println("    \n❖ Are you sure you want to exit? (Press 'y' to exit!)");
         System.out.println("    ❖ Otherwise press any key!");

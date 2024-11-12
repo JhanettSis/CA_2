@@ -4,16 +4,22 @@ package ca_2;
  *
  * @author jhane
  */
-import java.io.BufferedWriter;   // For efficient writing to files
-import java.io.FileWriter;       // To create and open a file for writing data
-import java.io.IOException;      // To handle errors that may occur during file writing
-import java.util.ArrayList;      // Provides a resizable array implementation for storing employee objects
-import java.util.HashSet;        // Stores unique items, prevents duplicate names in this case
-import java.util.List;           // Interface used to represent a list of employees
-import java.util.Random;         // Generates random values, used for randomizing employee attributes
-import java.util.Set;            // Interface for a collection that contains no duplicate elements
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Random;
+import java.util.Set;
 
-// Main class where we generate random employee data
+/**
+ * The CreateRandomData class is responsible for generating random employee data.
+ * It uses predefined lists of names, management roles, and department types
+ * to create Employee objects with randomly assigned attributes.
+ * The generated data can be saved to a specified file.
+ */
+
 public class CreateRandomData {
     
     //The list of the name is from the website https://1000randomnames.com/
@@ -52,19 +58,19 @@ public class CreateRandomData {
     // Inner Employee class to represent each employee's details
     static class Employee {
         private String employeeName;             // Stores the employee's name
-        private ManagerRoleType managerRole;     // Stores the manager role type for the employee
+        //private ManagerRoleType managerRole;     // Stores the manager role type for the employee
         private DepartmentType employeeDepartment;   // Stores the department for the employee
 
         // Constructor that initializes an employee's name, role, and department
         public Employee(String employeeName, ManagerRoleType managerRole, DepartmentType employeeDepartment) {
             this.employeeName = employeeName;             // Assigns name to the employee
-            this.managerRole = managerRole;               // Assigns a management role
+            //this.managerRole = managerRole;               // Assigns a management role
             this.employeeDepartment = employeeDepartment; // Assigns a department
         }
 
         // Method to return a formatted string of the Employee’s details
         public String toString() {
-            return employeeName + ", " + managerRole + ", " + employeeDepartment;
+            return employeeName + ", "  + employeeDepartment;
         }
     }
 
